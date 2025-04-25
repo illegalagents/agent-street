@@ -51,7 +51,7 @@ const Navbar = () => {
   const pathname = usePathname();
 
   return (
-    <nav className="bg-[#150909] p-3 border-y border-[#44222A]">
+    <nav className="bg-[#210e0e] p-3 border-y border-[#44222A]">
       <div className="flex justify-between items-center">
         <div className="flex items-center">
           <Image

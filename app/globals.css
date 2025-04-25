@@ -30,7 +30,13 @@
 }
 
 body {
-  background: var(--background);
+  background: linear-gradient(
+      360deg,
+      rgba(0, 0, 0, 1) 50%,
+      rgba(239, 86, 80, 1) 110%
+    )
+    no-repeat center center fixed;
+  background-size: cover;
   color: var(--foreground);
   font-family: Roboto, Helvetica, sans-serif;
 }
