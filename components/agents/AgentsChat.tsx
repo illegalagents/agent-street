@@ -211,7 +211,7 @@ const AgentMessage = ({ message }: { message: Message }) => {
 const UserMessage = ({ message }: { message: Message }) => {
   return (
     <div className="flex mb-2 w-full justify-end">
-      <div className="mr-2">
+      <div className="mr-2 flex flex-col items-end">
         <p className="text-[#FF265A]">
           {message.name}
           <span className="text-white text-sm ml-2">{message.time}</span>
