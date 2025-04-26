@@ -50,7 +50,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-[#210e0e] p-3 border-y border-[#44222A] relative">
+    <nav className="bg-[#210e0e] p-3 border-y border-[#44222A] fixed top-0 left-0 right-0 z-50">
       <div className="flex justify-between items-center">
         {/* logo + desktop menu */}
         <div className="flex items-center">

@@ -14,9 +14,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`antialiased`}>
+      {/* make body full‑screen, hide its scrollbar */}
+      <body className="relative h-screen antialiased overflow-hidden">
         <Navbar />
-        {children}
+        {/* content area is absolutely positioned under the navbar and scrolls */}
+        <main className="absolute top-16 bottom-0 left-0 right-0 overflow-y-auto">
+          {children}
+        </main>
       </body>
     </html>
   );
