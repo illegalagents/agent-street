@@ -66,7 +66,12 @@ const AgentCard = ({
   agentImage: string;
 }) => {
   return (
-    <div className="bg-[#161114] shadow-md p-1">
+    <div
+      className="bg-[#161114] shadow-md p-1 
+        hover:bg-[#2a1f27] hover:shadow-lg 
+        transform hover:scale-101 
+        transition duration-200 ease-in-out cursor-pointer"
+    >
       <div className="flex items-center space-x-4 justify-between">
         <div className="flex items-center space-x-4">
           <Image

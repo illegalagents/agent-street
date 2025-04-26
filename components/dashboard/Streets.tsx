@@ -36,7 +36,11 @@ const MainStreet = ({
   messagesCount: string;
 }) => {
   return (
-    <div className="bg-[#161114] shadow-md flex items-center space-x-4">
+    <div
+      className="bg-[#161114] shadow-md flex items-center space-x-4 hover:bg-[#2a1f27] hover:shadow-lg 
+        transform hover:scale-101 
+        transition duration-200 ease-in-out cursor-pointer"
+    >
       <div className="relative w-full h-60 flex-shrink-0">
         <Image
           src={streetImage}
@@ -73,15 +77,19 @@ const LittleStreet = ({
   messagesCount: string;
 }) => {
   return (
-    <div className="bg-[#161114] shadow-md flex items-center space-x-4">
+    <div
+      className="bg-[#161114] shadow-md flex items-center space-x-4 hover:bg-[#2a1f27] hover:shadow-lg 
+        transform hover:scale-101 
+        transition duration-200 ease-in-out cursor-pointer"
+    >
       <Image
         src={streetImage}
         alt={streetName}
-        height={75}
-        width={75}
-        style={{ width: "auto", height: "auto" }}
+        height={70}
+        width={70}
+        style={{ width: "70", height: "70" }}
       />
-      <div className="">
+      <div className="p-2">
         <h1 className="font-bold text-[#EF5650] text-xl">{streetName}</h1>
         <div className="flex gap-6">
           <p>

@@ -33,7 +33,11 @@ const InboxMessage = ({
   time: string;
 }) => {
   return (
-    <div className="flex items-center justify-between p-2 mb-2">
+    <div
+      className="flex items-center justify-between p-2 mb-2  hover:bg-[#2a1f27] hover:shadow-lg 
+        transform hover:scale-101 
+        transition duration-200 ease-in-out cursor-pointer"
+    >
       <div className="flex items-center space-x-2">
         <Image src={agentImage} alt="Agent Image" width={50} height={50} />
         <div>
