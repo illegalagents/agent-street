@@ -38,7 +38,13 @@ const mockAgents = [
 const AgentInfo = ({ icon, count }: { icon: string; count: number }) => {
   return (
     <div className="flex items-center justify-center space-x-2 bg-[#240E11] p-1 px-2 border border-[#44222A]">
-      <Image src={icon} alt="Icon" width={20} height={20} />
+      <Image
+        src={icon}
+        alt="Icon"
+        width={20}
+        height={20}
+        style={{ width: "auto", height: "auto" }}
+      />
       <span className="text-[#45E6FF]">{count}</span>
     </div>
   );

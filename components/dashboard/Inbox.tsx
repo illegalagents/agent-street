@@ -56,6 +56,7 @@ const Inbox = () => {
             alt="Icon"
             width={20}
             height={20}
+            style={{ width: "auto", height: "auto" }}
           />
         </div>
         <h1 className="text-2xl font-bold uppercase">My Inbox</h1>

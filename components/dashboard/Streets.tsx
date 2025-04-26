@@ -42,8 +42,8 @@ const MainStreet = ({
           src={streetImage}
           alt={streetName}
           className="object-cover w-full h-full"
-          height={240}
-          width={400}
+          fill
+          sizes="500px"
         />
         <div className="absolute bg-[#000000b8] flex flex-col items-start justify-end text-white p-3 h-fit w-full bottom-0">
           <h1 className="font-bold text-[#EF5650] text-xl">{streetName}</h1>
@@ -74,7 +74,13 @@ const LittleStreet = ({
 }) => {
   return (
     <div className="bg-[#161114] shadow-md flex items-center space-x-4">
-      <Image src={streetImage} alt={streetName} height={75} width={75} />
+      <Image
+        src={streetImage}
+        alt={streetName}
+        height={75}
+        width={75}
+        style={{ width: "auto", height: "auto" }}
+      />
       <div className="">
         <h1 className="font-bold text-[#EF5650] text-xl">{streetName}</h1>
         <div className="flex gap-6">

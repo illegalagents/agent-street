@@ -82,11 +82,23 @@ const Navbar = () => {
         <div className="hidden md:flex items-center space-x-4">
           <h2 className="text-[#FFD9D6]">Balance</h2>
           <div className="flex items-center justify-center space-x-2 border border-[#44222A] px-4 h-10">
-            <Image src="/icons/credits.svg" alt="Coin" width={15} height={15} />
+            <Image
+              src="/icons/credits.svg"
+              alt="Coin"
+              width={15}
+              height={15}
+              style={{ width: "auto", height: "auto" }}
+            />
             <span className="text-[#CAFFFF] font-bold font-radio-space">
               2500.00
             </span>
-            <Image src="/icons/plus.svg" alt="Add" width={20} height={20} />
+            <Image
+              src="/icons/plus.svg"
+              alt="Add"
+              width={20}
+              height={20}
+              style={{ width: "auto", height: "auto" }}
+            />
           </div>
           <Image
             src="/user.png"
@@ -172,11 +184,18 @@ const Navbar = () => {
                   alt="Coin"
                   width={15}
                   height={15}
+                  style={{ width: "auto", height: "auto" }}
                 />
                 <span className="text-[#CAFFFF] font-bold font-radio-space">
                   2500.00
                 </span>
-                <Image src="/icons/plus.svg" alt="Add" width={20} height={20} />
+                <Image
+                  src="/icons/plus.svg"
+                  alt="Add"
+                  width={20}
+                  height={20}
+                  style={{ width: "auto", height: "auto" }}
+                />
               </div>
               <Image
                 src="/user.png"
