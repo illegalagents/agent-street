@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -14,31 +15,28 @@ const NavItem = ({
   text: string;
   url: string;
   isActive?: boolean;
-}) => {
-  return (
-    <li>
-      <Link
-        href={url}
+}) => (
+  <li>
+    <Link
+      href={url}
+      className={`
+        uppercase font-bold flex items-center space-x-2 transition-colors duration-200
+        ${isActive ? "text-[#EF5650]" : "text-[#FFD9D6] hover:text-white"}
+      `}
+    >
+      <span
         className={`
-            uppercase font-bold flex items-center space-x-2
-            transition-colors duration-200 ease-in-out
-            ${isActive ? "text-[#EF5650]" : "text-[#FFD9D6] hover:text-white"}
-          `}
+        font-radio-space text-2xl transition-opacity duration-200
+        ${!isActive ? "opacity-35 hover:opacity-80" : ""}
+      `}
       >
-        <span
-          className={`
-              font-radio-space text-2xl
-              transition-opacity duration-200 ease-in-out
-              ${!isActive ? "opacity-35 hover:opacity-80" : ""}
-            `}
-        >
-          {number}
-        </span>
-        <span>{text}</span>
-      </Link>
-    </li>
-  );
-};
+        {number}
+      </span>
+      <span>{text}</span>
+    </Link>
+  </li>
+);
+
 const navItems = [
   { number: "01", text: "Dashboard", url: "/" },
   { number: "02", text: "My Agents", url: "/agents" },
@@ -49,10 +47,12 @@ const navItems = [
 
 const Navbar = () => {
   const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-[#210e0e] p-3 border-y border-[#44222A]">
+    <nav className="bg-[#210e0e] p-3 border-y border-[#44222A] relative">
       <div className="flex justify-between items-center">
+        {/* logo + desktop menu */}
         <div className="flex items-center">
           <Image
             src="/nav-logo.svg"
@@ -61,7 +61,7 @@ const Navbar = () => {
             height={40}
             className="mr-6"
           />
-          <ul className="flex space-x-6">
+          <ul className="hidden md:flex space-x-6">
             {navItems.map((item) => (
               <NavItem
                 key={item.number}
@@ -73,35 +73,115 @@ const Navbar = () => {
             ))}
           </ul>
         </div>
-        <div>
-          <div className="flex items-center space-x-4">
+
+        {/* right side (balance + avatar) */}
+        <div className="hidden md:flex items-center space-x-4">
+          <h2 className="text-[#FFD9D6]">Balance</h2>
+          <div className="flex items-center justify-center space-x-2 border border-[#44222A] px-4 h-10">
+            <Image src="/icons/credits.svg" alt="Coin" width={15} height={15} />
+            <span className="text-[#CAFFFF] font-bold font-radio-space">
+              2500.00
+            </span>
+            <Image src="/icons/plus.svg" alt="Add" width={20} height={20} />
+          </div>
+          <Image
+            src="/user.png"
+            alt="User"
+            width={40}
+            height={40}
+            className="cursor-pointer rounded-full"
+          />
+        </div>
+
+        {/* mobile hamburger */}
+        <button
+          className="md:hidden p-2"
+          onClick={() => setIsOpen((prev) => !prev)}
+          aria-label="Toggle menu"
+        >
+          {isOpen ? (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              className="lucide lucide-square-menu-icon lucide-square-menu"
+            >
+              <rect width="18" height="18" x="3" y="3" rx="2" />
+              <path d="M7 8h10" />
+              <path d="M7 12h10" />
+              <path d="M7 16h10" />
+            </svg>
+          ) : (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              className="lucide lucide-menu-icon lucide-menu"
+            >
+              <line x1="4" x2="20" y1="12" y2="12" />
+              <line x1="4" x2="20" y1="6" y2="6" />
+              <line x1="4" x2="20" y1="18" y2="18" />
+            </svg>
+          )}
+        </button>
+      </div>
+
+      {/* mobile menu */}
+
+      <div
+        className={`
+            md:hidden bg-[#210e0e] border-t border-[#44222A] overflow-hidden
+            transition-all duration-300 ease-in-out
+            ${isOpen ? "mt-2 max-h-[500px] opacity-100" : "max-h-0 opacity-0"}
+          `}
+      >
+        <ul className="flex flex-col space-y-4 p-4">
+          {navItems.map((item) => (
+            <NavItem
+              key={item.number}
+              number={item.number}
+              text={item.text}
+              url={item.url}
+              isActive={pathname === item.url}
+            />
+          ))}
+        </ul>
+        <div className="border-t border-[#44222A] pt-4 pb-1 flex flex-col space-y-4">
+          <div className="flex items-center justify-between">
             <h2 className="text-[#FFD9D6]">Balance</h2>
-            <div className="flex items-center justify-center space-x-2 border border-[#44222A] px-4 h-10">
+            <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-2 border border-[#44222A] px-4 h-10">
+                <Image
+                  src="/icons/credits.svg"
+                  alt="Coin"
+                  width={15}
+                  height={15}
+                />
+                <span className="text-[#CAFFFF] font-bold font-radio-space">
+                  2500.00
+                </span>
+                <Image src="/icons/plus.svg" alt="Add" width={20} height={20} />
+              </div>
               <Image
-                src="/icons/credits.svg"
-                alt="Coin"
-                width={15}
-                height={15}
-                className="mr-2"
-              />
-              <span className="text-[#CAFFFF] font-bold font-radio-space">
-                2500.00
-              </span>
-              <Image
-                src="/icons/plus.svg"
-                alt="Coin"
-                width={20}
-                height={20}
-                className="ml-10"
+                src="/user.png"
+                alt="User"
+                width={40}
+                height={40}
+                className="rounded-full self-center"
               />
             </div>
-            <Image
-              src="/user.png"
-              alt="Notification"
-              width={40}
-              height={40}
-              className="mx-4 cursor-pointer rounded-full"
-            />
           </div>
         </div>
       </div>
