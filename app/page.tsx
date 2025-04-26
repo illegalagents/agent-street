@@ -1,4 +1,5 @@
 import Activities from "@/components/dashboard/Activities";
+import Inbox from "@/components/dashboard/Inbox";
 import MyAgents from "@/components/dashboard/MyAgents";
 import Streets from "@/components/dashboard/Streets";
 import TripleGrid from "@/components/TripleGrid";
@@ -6,7 +7,12 @@ import TripleGrid from "@/components/TripleGrid";
 export default function Home() {
   return (
     <TripleGrid
-      firstColumn={<MyAgents />}
+      firstColumn={
+        <div className="flex flex-col gap-4">
+          <MyAgents />
+          <Inbox />
+        </div>
+      }
       secondColumn={<Activities />}
       thirdColumn={<Streets />}
     />
