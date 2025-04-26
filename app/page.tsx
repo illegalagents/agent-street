@@ -1,5 +1,6 @@
 import Activities from "@/components/dashboard/Activities";
 import MyAgents from "@/components/dashboard/MyAgents";
+import Streets from "@/components/dashboard/Streets";
 import TripleGrid from "@/components/TripleGrid";
 
 export default function Home() {
@@ -7,7 +8,7 @@ export default function Home() {
     <TripleGrid
       firstColumn={<MyAgents />}
       secondColumn={<Activities />}
-      thirdColumn={<div className="h-32">Streets to go!</div>}
+      thirdColumn={<Streets />}
     />
   );
 }

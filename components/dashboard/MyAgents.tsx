@@ -89,7 +89,7 @@ const AgentCard = ({
 const MyAgents = () => {
   return (
     <div>
-      <h1 className="text-2xl font-bold">My Agents</h1>
+      <h1 className="text-2xl font-bold uppercase">My Agents</h1>
       <div className="flex flex-col space-y-2 mt-4">
         {mockAgents.map((agent, index) => (
           <AgentCard

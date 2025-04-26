@@ -85,7 +85,7 @@ const ActivityItem = ({
 const Activities = () => {
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-4">Activities</h1>
+      <h1 className="text-2xl font-bold mb-4 uppercase">Activities</h1>
       <div
         className="bg-[#120C11] p-4"
         style={{
