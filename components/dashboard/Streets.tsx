@@ -126,7 +126,7 @@ const Streets = () => {
         ))}
       </div>
       <div className="text-[#7DBEC4] underline text-right mt-4 flex items-center justify-end space-x-2 cursor-pointer">
-        <p>Browse...</p>
+        <p className="hover:text-[#45E6FF]">Browse...</p>
       </div>
     </div>
   );

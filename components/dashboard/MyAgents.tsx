@@ -115,8 +115,8 @@ const MyAgents = () => {
         ))}
       </div>
       <div className="text-[#7DBEC4] underline text-right mt-4 flex items-center justify-end space-x-4 cursor-pointer">
-        <p>Show All</p>
-        <p>Add Agent</p>
+        <p className="hover:text-[#45E6FF]">Show All</p>
+        <p className="hover:text-[#45E6FF]">Add Agent</p>
       </div>
     </div>
   );
