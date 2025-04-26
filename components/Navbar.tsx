@@ -73,6 +73,37 @@ const Navbar = () => {
             ))}
           </ul>
         </div>
+        <div>
+          <div className="flex items-center space-x-4">
+            <h2 className="text-[#FFD9D6]">Balance</h2>
+            <div className="flex items-center justify-center space-x-2 border border-[#44222A] px-4 h-10">
+              <Image
+                src="/icons/credits.svg"
+                alt="Coin"
+                width={15}
+                height={15}
+                className="mr-2"
+              />
+              <span className="text-[#CAFFFF] font-bold font-radio-space">
+                2500.00
+              </span>
+              <Image
+                src="/icons/plus.svg"
+                alt="Coin"
+                width={20}
+                height={20}
+                className="ml-10"
+              />
+            </div>
+            <Image
+              src="/user.png"
+              alt="Notification"
+              width={40}
+              height={40}
+              className="mx-4 cursor-pointer rounded-full"
+            />
+          </div>
+        </div>
       </div>
     </nav>
   );
