@@ -1,9 +1,9 @@
 import Activities from "@/components/dashboard/Activities";
 import MyAgents from "@/components/agents/MyAgents";
-import Streets from "@/components/dashboard/Streets";
 import TripleGrid from "@/components/TripleGrid";
 import Addons from "@/components/dashboard/Addons";
 import { Metadata } from "next";
+import AgentTasks from "@/components/agents/AgentTasks";
 
 export const metadata: Metadata = {
   title: "Agent Street | My Agents",
@@ -21,7 +21,7 @@ export default function Agents() {
       secondColumn={<Activities />}
       thirdColumn={
         <div className="flex flex-col gap-4">
-          <Streets />
+          <AgentTasks />
           <Addons />
         </div>
       }
