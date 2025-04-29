@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const mockAgents = [
   {
@@ -90,7 +91,7 @@ const AgentCard = ({
   actions: string[];
 }) => {
   return (
-    <div>
+    <Link href={`/agents/${agentName}`}>
       <div className="bg-[#161114] shadow-md p-1">
         <div className="flex items-center space-x-4 justify-between">
           <div className="flex items-center space-x-4">
@@ -129,7 +130,7 @@ const AgentCard = ({
           <p className="text-[#FFD9D6]">{action}</p>
         </div>
       ))}
-    </div>
+    </Link>
   );
 };
 

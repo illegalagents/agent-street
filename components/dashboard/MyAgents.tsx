@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const mockAgents = [
   {
@@ -66,11 +67,12 @@ const AgentCard = ({
   agentImage: string;
 }) => {
   return (
-    <div
+    <Link
       className="bg-[#161114] shadow-md p-1 
         hover:bg-[#2a1f27] hover:shadow-lg 
         transform hover:scale-101 
         transition duration-200 ease-in-out cursor-pointer"
+      href={`/agents/${agentName}`}
     >
       <div className="flex items-center space-x-4 justify-between">
         <div className="flex items-center space-x-4">
@@ -93,7 +95,7 @@ const AgentCard = ({
           <AgentInfo icon="/icons/warning.svg" count={agentNotificationCount} />
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
