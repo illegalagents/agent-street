@@ -109,13 +109,30 @@ const AgentMain = () => {
   );
 };
 
+const AgentSidePanel = () => {
+  return (
+    <div className="flex flex-row">
+      {/* Tabs */}
+      <div className="flex flex-col gap-4 mt-10">
+        <div className="bg-[#472129] hover:bg-[#44222A] cursor-pointer h-20 w-20"></div>
+        <div className="bg-[#472129] hover:bg-[#44222A] cursor-pointer h-20 w-20"></div>
+        <div className="bg-[#472129] hover:bg-[#44222A] cursor-pointer h-20 w-20"></div>
+        <div className="bg-[#472129] hover:bg-[#44222A] cursor-pointer h-20 w-20"></div>
+      </div>
+      <div className="bg-[#472129] border border-[#853749] h-[calc(100vh-64px)] flex-1"></div>
+    </div>
+  );
+};
+
 const AgentProfile = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-4 md:gap-4 px-3 md:px-8 py-8 space-y-4 md:space-y-0">
-      <div className="col-span-1">
+    <div className="grid grid-cols-1 md:grid-cols-4 md:gap-4 space-y-4 md:space-y-0">
+      <div className="col-span-1 p-4">
         <AgentMain />
       </div>
-      <div className="col-span-3"></div>
+      <div className="col-span-3">
+        <AgentSidePanel />
+      </div>
     </div>
   );
 };
