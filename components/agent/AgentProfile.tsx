@@ -1,5 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
+import AgentAddons from "./AgentAddons";
 
 const mockAgents = [
   {
@@ -72,7 +76,7 @@ const AgentMain = () => {
       </div>
       <div className="flex mt-4 gap-4">
         <div className="flex flex-col items-center justify-center gap-4">
-          <div className="bg-[#56304A] flex items-center justify-center w-24 h-24 hover:shadow-lg hover:bg-[#44222A] cursor-pointer transition duration-200 ease-in-out">
+          <div className="bg-[#56304A] flex items-center justify-center w-20 h-20 hover:shadow-lg hover:bg-[#44222A] cursor-pointer transition duration-200 ease-in-out">
             <h1 className="text-[#FFECEC] text-4xl">+</h1>
           </div>
           {mockAgents.map((agent, index) => (
@@ -80,8 +84,8 @@ const AgentMain = () => {
               key={index}
               src={agent.image}
               alt="Agent Image"
-              width={100}
-              height={100}
+              width={75}
+              height={75}
               className="hover:shadow-lg 
         transform hover:scale-101 
         transition duration-200 ease-in-out cursor-pointer"
@@ -109,17 +113,33 @@ const AgentMain = () => {
   );
 };
 
+const sidePanelTabs = [
+  { name: "Addons", icon: "/icons/actions.svg" },
+  { name: "Settings", icon: "/icons/settings.svg" },
+  { name: "History", icon: "/icons/history.svg" },
+  { name: "Logs", icon: "/icons/logs.svg" },
+];
+
 const AgentSidePanel = () => {
+  const [tab, setTab] = useState(0);
+
   return (
     <div className="flex flex-row">
       {/* Tabs */}
       <div className="flex flex-col gap-4 mt-10">
-        <div className="bg-[#472129] hover:bg-[#44222A] cursor-pointer h-20 w-20"></div>
-        <div className="bg-[#472129] hover:bg-[#44222A] cursor-pointer h-20 w-20"></div>
-        <div className="bg-[#472129] hover:bg-[#44222A] cursor-pointer h-20 w-20"></div>
-        <div className="bg-[#472129] hover:bg-[#44222A] cursor-pointer h-20 w-20"></div>
+        {sidePanelTabs.map((tabItem, index) => (
+          <div
+            className={`bg-[#301A25] hover:bg-[#44222A] cursor-pointer h-20 w-20 ${
+              index === tab ? "bg-[#44222A]" : ""
+            }`}
+            key={index}
+            onClick={() => setTab(index)}
+          ></div>
+        ))}
       </div>
-      <div className="bg-[#472129] border border-[#853749] h-[calc(100vh-64px)] flex-1"></div>
+      <div className="bg-[#301A25] border-[#44222A] border-2 h-[calc(100vh-64px)] flex-1">
+        {tab === 0 && <AgentAddons />}
+      </div>
     </div>
   );
 };
