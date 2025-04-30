@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import AgentAddons from "./AgentAddons";
+import AgentDetails from "./AgentDetails";
 
 const mockAgents = [
   {
@@ -138,7 +139,8 @@ const AgentSidePanel = () => {
         ))}
       </div>
       <div className="bg-[#301A25] border-[#44222A] border-2 h-[calc(100vh-64px)] flex-1">
-        {tab === 0 && <AgentAddons />}
+        {tab === 0 && <AgentDetails />}
+        {tab === 1 && <AgentAddons />}
       </div>
     </div>
   );
