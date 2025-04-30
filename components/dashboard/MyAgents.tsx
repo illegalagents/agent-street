@@ -1,40 +1,8 @@
+"use client";
+
+import { useAgentStore } from "@/zustand/agents";
 import Image from "next/image";
 import Link from "next/link";
-
-const mockAgents = [
-  {
-    name: "Agent 1",
-    class: "Pro Gamer",
-    task: "Playing Fortnite...",
-    chatCount: 5,
-    notificationCount: 2,
-    image: "/agents/1.png",
-  },
-  {
-    name: "Agent 1",
-    class: "Coder",
-    task: "Vibe coding...",
-    chatCount: 5,
-    notificationCount: 2,
-    image: "/agents/2.png",
-  },
-  {
-    name: "Agent 1",
-    class: "Finance",
-    task: "Balancing the books...",
-    chatCount: 5,
-    notificationCount: 2,
-    image: "/agents/3.png",
-  },
-  {
-    name: "Agent 1",
-    class: "Romantic",
-    task: "Flirting with the AI...",
-    chatCount: 5,
-    notificationCount: 2,
-    image: "/agents/4.png",
-  },
-];
 
 const AgentInfo = ({ icon, count }: { icon: string; count: number }) => {
   return (
@@ -100,11 +68,13 @@ const AgentCard = ({
 };
 
 const MyAgents = () => {
+  const agents = useAgentStore((state) => state.agents);
+
   return (
     <div>
       <h1 className="text-2xl font-bold uppercase">My Agents</h1>
       <div className="flex flex-col space-y-2 mt-4">
-        {mockAgents.map((agent, index) => (
+        {agents.map((agent, index) => (
           <AgentCard
             key={index}
             agentName={agent.name}
