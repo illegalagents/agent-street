@@ -76,3 +76,13 @@ body {
 .fade-in {
   animation: fadeIn 0.4s ease-out;
 }
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 30px;
+  border-radius: 10%;
+  background: #ffd9d6;
+  cursor: pointer;
+}
