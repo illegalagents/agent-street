@@ -62,10 +62,9 @@ const AgentMain = ({ agents, agent }: { agents: Agent[]; agent: Agent }) => {
 };
 
 const sidePanelTabs = [
-  { name: "Addons", icon: "/icons/actions.svg" },
-  { name: "Settings", icon: "/icons/settings.svg" },
-  { name: "History", icon: "/icons/history.svg" },
-  { name: "Logs", icon: "/icons/logs.svg" },
+  { name: "Details", icon: "/icons/agent-details.svg" },
+  { name: "Addons", icon: "/icons/agent-addons.svg" },
+  { name: "Workflows", icon: "/icons/agent-workflows.svg" },
 ];
 
 const AgentSidePanel = ({ agent }: { agent: Agent }) => {
@@ -82,7 +81,16 @@ const AgentSidePanel = ({ agent }: { agent: Agent }) => {
             }`}
             key={index}
             onClick={() => setTab(index)}
-          ></div>
+          >
+            <div className="flex flex-col items-center justify-center h-full">
+              <Image
+                src={tabItem.icon}
+                alt={tabItem.name}
+                width={40}
+                height={40}
+              />
+            </div>
+          </div>
         ))}
       </div>
       <div className="bg-[#301A25] border-[#44222A] border-2 h-[calc(100vh-64px)] flex-1">
