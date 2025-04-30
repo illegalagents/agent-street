@@ -1,5 +1,6 @@
 "use client";
 
+import { Agent } from "@/zustand/agents";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -24,7 +25,7 @@ const Slider = () => {
   );
 };
 
-const AgentDetails = () => {
+const AgentDetails = ({ agent }: { agent: Agent }) => {
   return (
     <div className="fade-in">
       <div className="p-6 border-[#44222A] border-b-2">
@@ -50,7 +51,7 @@ const AgentDetails = () => {
               <h1 className="text-[#C04944] text-xl font-bold mb-4">
                 Agent Name
               </h1>
-              <h1 className="text-white text-2xl font-bold">Sycilla</h1>
+              <h1 className="text-white text-2xl font-bold"> {agent.name}</h1>
             </div>
             <div className="flex items-center gap-6 align-end">
               <Image

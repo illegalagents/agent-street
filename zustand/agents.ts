@@ -5,7 +5,7 @@ import type {} from "@redux-devtools/extension";
 const mockAgents = [
   {
     id: 1,
-    name: "Agent 1",
+    name: "Samantha",
     class: "Pro Gamer",
     task: "Playing Fortnite...",
     chatCount: 5,
@@ -15,7 +15,7 @@ const mockAgents = [
   },
   {
     id: 2,
-    name: "Agent 1",
+    name: "Bruce",
     class: "Coder",
     task: "Vibe coding...",
     chatCount: 5,
@@ -25,7 +25,7 @@ const mockAgents = [
   },
   {
     id: 3,
-    name: "Agent 1",
+    name: "Jessica",
     class: "Finance",
     task: "Balancing the books...",
     chatCount: 5,
@@ -35,7 +35,7 @@ const mockAgents = [
   },
   {
     id: 4,
-    name: "Agent 1",
+    name: "Sam",
     class: "Romantic",
     task: "Flirting with the AI...",
     chatCount: 5,
@@ -45,7 +45,7 @@ const mockAgents = [
   },
   {
     id: 5,
-    name: "Agent 1",
+    name: "Kelly",
     class: "Pro Gamer",
     task: "Playing Fortnite...",
     chatCount: 5,
@@ -55,7 +55,7 @@ const mockAgents = [
   },
   {
     id: 6,
-    name: "Agent 1",
+    name: "Shawn",
     class: "Coder",
     task: "Vibe coding...",
     chatCount: 5,
@@ -65,7 +65,7 @@ const mockAgents = [
   },
 ];
 
-interface Agent {
+export interface Agent {
   id: number;
   name: string;
   class: string;

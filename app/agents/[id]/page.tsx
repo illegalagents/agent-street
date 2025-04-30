@@ -6,6 +6,14 @@ export const metadata: Metadata = {
   description: "Your agents, your way.",
 };
 
-export default function Agents() {
-  return <AgentProfile />;
+export default async function Agents({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  if (!id) {
+    return <div>Agent not found</div>;
+  }
+  return <AgentProfile agentId={Number(id)} />;
 }

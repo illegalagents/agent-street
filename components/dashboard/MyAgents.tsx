@@ -20,6 +20,7 @@ const AgentInfo = ({ icon, count }: { icon: string; count: number }) => {
 };
 
 const AgentCard = ({
+  agentId,
   agentName,
   agentClass,
   agentTask,
@@ -27,6 +28,7 @@ const AgentCard = ({
   agentNotificationCount,
   agentImage,
 }: {
+  agentId: number;
   agentName: string;
   agentClass: string;
   agentTask: string;
@@ -40,7 +42,7 @@ const AgentCard = ({
         hover:bg-[#2a1f27] hover:shadow-lg 
         transform hover:scale-101 
         transition duration-200 ease-in-out cursor-pointer"
-      href={`/agents/${agentName}`}
+      href={`/agents/${agentId}`}
     >
       <div className="flex items-center space-x-4 justify-between">
         <div className="flex items-center space-x-4">
@@ -77,6 +79,7 @@ const MyAgents = () => {
         {agents.map((agent, index) => (
           <AgentCard
             key={index}
+            agentId={agent.id}
             agentName={agent.name}
             agentClass={agent.class}
             agentTask={agent.task}
