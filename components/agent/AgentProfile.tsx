@@ -71,9 +71,9 @@ const AgentSidePanel = ({ agent }: { agent: Agent }) => {
   const [tab, setTab] = useState(0);
 
   return (
-    <div className="flex flex-row">
+    <div className="flex flex-col md:flex-row">
       {/* Tabs */}
-      <div className="flex flex-col gap-4 mt-10">
+      <div className="flex flex-row md:flex-col gap-4 mt-4 md:mt-10 w-full md:w-auto md:justify-center md:justify-start">
         {sidePanelTabs.map((tabItem, index) => (
           <div
             className={`bg-[#301A25] hover:bg-[#44222A] cursor-pointer h-20 w-20 ${
@@ -93,7 +93,7 @@ const AgentSidePanel = ({ agent }: { agent: Agent }) => {
           </div>
         ))}
       </div>
-      <div className="bg-[#301A25] border-[#44222A] border-2 h-[calc(100vh-64px)] flex-1">
+      <div className="bg-[#301A25] border-[#44222A] border-2 h-auto md:h-[calc(100vh-65px)] flex-1 md:mt-0">
         {tab === 0 && <AgentDetails agent={agent} />}
         {tab === 1 && <AgentAddons />}
       </div>
