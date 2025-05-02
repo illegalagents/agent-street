@@ -1,6 +1,5 @@
 import { create } from "zustand";
-import { devtools, persist } from "zustand/middleware";
-import type {} from "@redux-devtools/extension";
+import { devtools } from "zustand/middleware";
 
 const mockAgents = [
   {
@@ -85,27 +84,25 @@ interface AgentState {
 
 export const useAgentStore = create<AgentState>()(
   devtools(
-    persist(
-      (set) => ({
-        agents: mockAgents,
-        addAgent: (agent) =>
-          set((state) => ({
-            agents: [...state.agents, agent],
-          })),
-        editAgent: (id, updatedAgent) =>
-          set((state) => ({
-            agents: state.agents.map((agent) =>
-              agent.id === id ? { ...agent, ...updatedAgent } : agent
-            ),
-          })),
-        deleteAgent: (id) =>
-          set((state) => ({
-            agents: state.agents.filter((agent) => agent.id !== id),
-          })),
-      }),
-      {
-        name: "agent-storage",
-      }
-    )
+    (set) => ({
+      agents: mockAgents,
+      addAgent: (agent) =>
+        set((state) => ({
+          agents: [...state.agents, agent],
+        })),
+      editAgent: (id, updatedAgent) =>
+        set((state) => ({
+          agents: state.agents.map((agent) =>
+            agent.id === id ? { ...agent, ...updatedAgent } : agent
+          ),
+        })),
+      deleteAgent: (id) =>
+        set((state) => ({
+          agents: state.agents.filter((agent) => agent.id !== id),
+        })),
+    }),
+    {
+      name: "agent-storage",
+    }
   )
 );

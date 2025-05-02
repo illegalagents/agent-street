@@ -1,6 +1,5 @@
 import { create } from "zustand";
-import { devtools, persist } from "zustand/middleware";
-import type {} from "@redux-devtools/extension";
+import { devtools } from "zustand/middleware";
 
 const mockAddons = [
   {
@@ -155,12 +154,15 @@ export interface Addon {
 
 export enum AddonStep {
   BROWSE,
+  CONFIGURE,
   CUSTOM,
 }
 
 interface AddonsState {
   addons: Addon[];
   currentAddonStep: AddonStep;
+  selectedAddon: Addon | null;
+  setSelectedAddon: (addon: Addon | null) => void;
   setAddonStep: (step: AddonStep) => void;
   addAddon: (addon: Addon) => void;
   editAddon: (id: number, updatedAddon: Partial<Addon>) => void;
@@ -169,30 +171,30 @@ interface AddonsState {
 
 export const useAddonStore = create<AddonsState>()(
   devtools(
-    persist(
-      (set) => ({
-        addons: mockAddons,
-        currentAddonStep: AddonStep.BROWSE,
-        setAddonStep: (step: AddonStep) => set({ currentAddonStep: step }),
-        addAddon: (addon) =>
-          set((state) => ({
-            addons: [...state.addons, addon],
-          })),
-        editAddon: (id, updatedAddon) =>
-          set((state) => ({
-            addons: state.addons.map((addon) =>
-              addon.id === id ? { ...addon, ...updatedAddon } : addon
-            ),
-          })),
+    (set) => ({
+      addons: mockAddons,
+      currentAddonStep: AddonStep.BROWSE,
+      selectedAddon: null,
+      setSelectedAddon: (addon) => set({ selectedAddon: addon }),
+      setAddonStep: (step: AddonStep) => set({ currentAddonStep: step }),
+      addAddon: (addon) =>
+        set((state) => ({
+          addons: [...state.addons, addon],
+        })),
+      editAddon: (id, updatedAddon) =>
+        set((state) => ({
+          addons: state.addons.map((addon) =>
+            addon.id === id ? { ...addon, ...updatedAddon } : addon
+          ),
+        })),
 
-        deleteAddon: (id) =>
-          set((state) => ({
-            addons: state.addons.filter((addon) => addon.id !== id),
-          })),
-      }),
-      {
-        name: "addon-storage",
-      }
-    )
+      deleteAddon: (id) =>
+        set((state) => ({
+          addons: state.addons.filter((addon) => addon.id !== id),
+        })),
+    }),
+    {
+      name: "addon-storage",
+    }
   )
 );

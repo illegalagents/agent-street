@@ -8,17 +8,20 @@ const AddonCard = ({
   description,
   tags,
   image,
+  onClick,
 }: {
   name: string;
   description: string;
   tags: string[];
   image: string;
+  onClick: () => void;
 }) => {
   return (
     <div
       className="bg-[#32212D] hover:shadow-lg hover:bg-[#452c3d]
           transform hover:scale-101 
           transition duration-200 ease-in-out cursor-pointer"
+      onClick={onClick}
     >
       <Image
         src={image}
@@ -46,7 +49,9 @@ const AddonCard = ({
 };
 
 const BrowseAddons = () => {
-  const { addons, setAddonStep } = useAddonStore((state) => state);
+  const { addons, setAddonStep, setSelectedAddon } = useAddonStore(
+    (state) => state
+  );
 
   return (
     <div className="fade-in">
@@ -67,6 +72,10 @@ const BrowseAddons = () => {
               description={addon.description}
               tags={addon.tags}
               image={addon.image}
+              onClick={() => {
+                setSelectedAddon(addon);
+                setAddonStep(AddonStep.CONFIGURE);
+              }}
             />
           ))}
         </div>
