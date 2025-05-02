@@ -26,25 +26,57 @@ const AddonCard = ({
           transition duration-200 ease-in-out"
     >
       <div className="relative">
-        {/* overlay button */}
-        <button
-          type="button"
-          className="absolute top-2 right-2 z-10 bg-white hover:bg-[#25D74F] text-white p-1 rounded border-2 border-black border-2 cursor-pointer"
-          onClick={onAdd}
-        >
-          <Image
-            src={"/icons/add.svg"}
-            alt={name}
-            className="w-full h-5 w-5 object-cover"
-            width={100}
-            height={100}
-          />
-        </button>
+        {isActive ? (
+          <div className="flex absolute top-2 right-2 z-10 gap-2">
+            <button
+              type="button"
+              className="bg-white hover:bg-[#CAFFFF] text-white p-1 rounded border-2 border-black border-2 cursor-pointer"
+              onClick={onAdd}
+            >
+              <Image
+                src={"/icons/settings.svg"}
+                alt={name}
+                className="w-full h-5 w-5 object-cover"
+                width={100}
+                height={100}
+              />
+            </button>
+            <button
+              type="button"
+              className="bg-white hover:bg-[#C04944] text-white p-1 rounded border-2 border-black border-2 cursor-pointer"
+              onClick={onAdd}
+            >
+              <Image
+                src={"/icons/trash.svg"}
+                alt={name}
+                className="w-full h-5 w-5 object-cover"
+                width={100}
+                height={100}
+              />
+            </button>
+          </div>
+        ) : (
+          <button
+            type="button"
+            className="absolute top-2 right-2 z-10 bg-white hover:bg-[#25D74F] text-white p-1 rounded border-2 border-black border-2 cursor-pointer"
+            onClick={onAdd}
+          >
+            <Image
+              src={"/icons/add.svg"}
+              alt={name}
+              className="w-full h-5 w-5 object-cover"
+              width={100}
+              height={100}
+            />
+          </button>
+        )}
+
         {isActive && (
           <div className="absolute top-2 left-2 p-2 px-4 bg-[#25D74F] text-black rounded-full text-sm font-bold">
             <p>IN USE</p>
           </div>
         )}
+
         <Image
           src={image}
           alt={name}
