@@ -11,6 +11,7 @@ const mockAgents = [
     notificationCount: 2,
     image: "/agents/1.png",
     actions: ["Search X for Apple.corp news...", "Bring news from followers.."],
+    addons: [1, 2],
   },
   {
     id: 2,
@@ -21,6 +22,7 @@ const mockAgents = [
     notificationCount: 2,
     image: "/agents/2.png",
     actions: ["Search X for Apple.corp news...", "Bring news from followers.."],
+    addons: [1, 2],
   },
   {
     id: 3,
@@ -41,6 +43,7 @@ const mockAgents = [
     notificationCount: 2,
     image: "/agents/4.png",
     actions: ["Search X for Apple.corp news...", "Bring news from followers.."],
+    addons: [1, 2],
   },
   {
     id: 5,
@@ -51,6 +54,7 @@ const mockAgents = [
     notificationCount: 2,
     image: "/agents/1.png",
     actions: ["Search X for Apple.corp news...", "Bring news from followers.."],
+    addons: [1, 2],
   },
   {
     id: 6,
@@ -61,6 +65,7 @@ const mockAgents = [
     notificationCount: 2,
     image: "/agents/2.png",
     actions: ["Search X for Apple.corp news...", "Bring news from followers.."],
+    addons: [1, 2],
   },
 ];
 
@@ -73,6 +78,7 @@ export interface Agent {
   notificationCount: number;
   image: string;
   actions: string[];
+  addons: number[];
 }
 
 interface AgentState {

@@ -95,7 +95,7 @@ const AgentSidePanel = ({ agent }: { agent: Agent }) => {
       </div>
       <div className="bg-[#301A25] border-[#44222A] border-2 h-auto md:h-[calc(100vh-65px)] flex-1 md:mt-0 overflow-hidden">
         {tab === 0 && <AgentDetails agent={agent} />}
-        {tab === 1 && <AgentAddons />}
+        {tab === 1 && <AgentAddons agent={agent} />}
       </div>
     </div>
   );

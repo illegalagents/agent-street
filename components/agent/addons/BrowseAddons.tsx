@@ -1,6 +1,7 @@
 "use client";
 
 import { AddonStep, useAddonStore } from "@/zustand/addons";
+import { Agent } from "@/zustand/agents";
 import Image from "next/image";
 
 const AddonCard = ({
@@ -8,12 +9,14 @@ const AddonCard = ({
   description,
   tags,
   image,
+  isActive,
   onAdd,
 }: {
   name: string;
   description: string;
   tags: string[];
   image: string;
+  isActive: boolean;
   onAdd: () => void;
 }) => {
   return (
@@ -37,6 +40,11 @@ const AddonCard = ({
             height={100}
           />
         </button>
+        {isActive && (
+          <div className="absolute top-2 left-2 p-2 px-4 bg-[#25D74F] text-black rounded-full text-sm font-bold">
+            <p>IN USE</p>
+          </div>
+        )}
         <Image
           src={image}
           alt={name}
@@ -64,7 +72,7 @@ const AddonCard = ({
   );
 };
 
-const BrowseAddons = () => {
+const BrowseAddons = ({ agent }: { agent: Agent }) => {
   const { addons, setAddonStep, setSelectedAddon } = useAddonStore(
     (state) => state
   );
@@ -92,6 +100,7 @@ const BrowseAddons = () => {
                 setSelectedAddon(addon);
                 setAddonStep(AddonStep.CONFIGURE);
               }}
+              isActive={agent.addons.includes(addon.id)}
             />
           ))}
         </div>

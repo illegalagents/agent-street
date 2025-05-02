@@ -1,12 +1,15 @@
 "use client";
 
 import { AddonStep, useAddonStore } from "@/zustand/addons";
+import { Agent } from "@/zustand/agents";
 import Image from "next/image";
 
-const ConfigureAddon = () => {
+const ConfigureAddon = ({ agent }: { agent: Agent }) => {
   const { setAddonStep, selectedAddon, setSelectedAddon } = useAddonStore(
     (state) => state
   );
+
+  console.log(agent);
 
   if (!selectedAddon) {
     return (
