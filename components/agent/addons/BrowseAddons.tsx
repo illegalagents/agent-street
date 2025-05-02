@@ -1,7 +1,7 @@
 "use client";
 
 import { AddonStep, useAddonStore } from "@/zustand/addons";
-import { Agent } from "@/zustand/agents";
+import { Agent, useAgentStore } from "@/zustand/agents";
 import Image from "next/image";
 
 const AddonCard = ({
@@ -11,6 +11,8 @@ const AddonCard = ({
   image,
   isActive,
   onAdd,
+  onRemove,
+  onEdit,
 }: {
   name: string;
   description: string;
@@ -18,6 +20,8 @@ const AddonCard = ({
   image: string;
   isActive: boolean;
   onAdd: () => void;
+  onRemove: () => void;
+  onEdit: () => void;
 }) => {
   return (
     <div
@@ -31,7 +35,7 @@ const AddonCard = ({
             <button
               type="button"
               className="bg-white hover:bg-[#CAFFFF] text-white p-1 rounded border-2 border-black border-2 cursor-pointer"
-              onClick={onAdd}
+              onClick={onEdit}
             >
               <Image
                 src={"/icons/settings.svg"}
@@ -44,7 +48,7 @@ const AddonCard = ({
             <button
               type="button"
               className="bg-white hover:bg-[#C04944] text-white p-1 rounded border-2 border-black border-2 cursor-pointer"
-              onClick={onAdd}
+              onClick={onRemove}
             >
               <Image
                 src={"/icons/trash.svg"}
@@ -108,6 +112,7 @@ const BrowseAddons = ({ agent }: { agent: Agent }) => {
   const { addons, setAddonStep, setSelectedAddon } = useAddonStore(
     (state) => state
   );
+  const { editAgent } = useAgentStore((state) => state);
 
   return (
     <div className="fade-in">
@@ -129,6 +134,18 @@ const BrowseAddons = ({ agent }: { agent: Agent }) => {
               tags={addon.tags}
               image={addon.image}
               onAdd={() => {
+                setSelectedAddon(addon);
+                setAddonStep(AddonStep.CONFIGURE);
+                editAgent(agent.id, {
+                  addons: [...agent.addons, addon.id],
+                });
+              }}
+              onRemove={() => {
+                editAgent(agent.id, {
+                  addons: agent.addons.filter((id) => id !== addon.id),
+                });
+              }}
+              onEdit={() => {
                 setSelectedAddon(addon);
                 setAddonStep(AddonStep.CONFIGURE);
               }}
