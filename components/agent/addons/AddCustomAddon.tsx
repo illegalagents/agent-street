@@ -32,7 +32,7 @@ const AddonEnvInput = ({ onRemove }: { onRemove?: () => void }) => {
   return (
     <div>
       <label>
-        <h1 className="text-[#FFD9D6] text-lg font-bold mb-2">Env Key</h1>
+        <h1 className="text-[#FFD9D6] text-lg font-bold mb-2">Enviroment Variable</h1>
       </label>
       <div className="flex items-center gap-4">
         <input
