@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import AgentAddons from "./AgentAddons";
+import AgentAddons from "./addons/AgentAddons";
 import AgentDetails from "./AgentDetails";
 import { Agent, useAgentStore } from "@/zustand/agents";
 
@@ -93,7 +93,7 @@ const AgentSidePanel = ({ agent }: { agent: Agent }) => {
           </div>
         ))}
       </div>
-      <div className="bg-[#301A25] border-[#44222A] border-2 h-auto md:h-[calc(100vh-65px)] flex-1 md:mt-0">
+      <div className="bg-[#301A25] border-[#44222A] border-2 h-auto md:h-[calc(100vh-65px)] flex-1 md:mt-0 overflow-hidden">
         {tab === 0 && <AgentDetails agent={agent} />}
         {tab === 1 && <AgentAddons />}
       </div>
