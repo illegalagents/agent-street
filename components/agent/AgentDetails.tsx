@@ -172,7 +172,7 @@ const AgentDetails = ({ agent }: { agent: Agent }) => {
           <div className="mt-8 flex gap-4 mb-4">
             <div className="flex items-center border-2 border-[#44222A] h-25 w-25 justify-center">
               <Image
-                src="/icons/tokens.svg"
+                src="/icons/agent-message.svg"
                 alt="profile"
                 width={60}
                 height={60}
