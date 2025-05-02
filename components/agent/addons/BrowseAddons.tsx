@@ -157,8 +157,7 @@ const BrowseAddons = ({ agent }: { agent: Agent }) => {
 
       <div className="flex items-center justify-center p-4 border-t-2 border-[#44222A] gap-4">
         <button
-          className="bg-[#0A3E69] text-[#45E6FF] px-4 py-2 h-fit 
-              cursor-pointer transition duration-300 ease-in-out hover:bg-[#0A3E69] hover:text-[#FFD9D6]"
+          className="action-button"
           onClick={() => setAddonStep(AddonStep.CUSTOM)}
         >
           Add Custom Addon

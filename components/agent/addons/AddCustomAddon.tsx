@@ -32,7 +32,9 @@ const AddonEnvInput = ({ onRemove }: { onRemove?: () => void }) => {
   return (
     <div>
       <label>
-        <h1 className="text-[#FFD9D6] text-lg font-bold mb-2">Enviroment Variable</h1>
+        <h1 className="text-[#FFD9D6] text-lg font-bold mb-2">
+          Enviroment Variable
+        </h1>
       </label>
       <div className="flex items-center gap-4">
         <input
@@ -118,11 +120,7 @@ const AddCustomAddon = () => {
             {envs.map((id) => (
               <AddonEnvInput key={id} onRemove={() => removeEnv(id)} />
             ))}
-            <button
-              type="button"
-              className="self-start bg-[#0A3E69] text-[#45E6FF] px-4 py-2 rounded mt-2 cursor-pointer"
-              onClick={addEnv}
-            >
+            <button type="button" className="action-button" onClick={addEnv}>
               Add Env
             </button>
           </div>
@@ -131,18 +129,12 @@ const AddCustomAddon = () => {
 
       <div className="flex items-center justify-center p-4 border-t-2 border-[#44222A] gap-4">
         <button
-          className="bg-[#0A3E69] text-[#45E6FF] px-4 py-2 h-fit 
-            cursor-pointer transition duration-300 ease-in-out hover:bg-[#0A3E69] hover:text-[#FFD9D6]"
+          className="action-button"
           onClick={() => setAddonStep(AddonStep.BROWSE)}
         >
           Back
         </button>
-        <button
-          className="bg-[#0A3E69] text-[#45E6FF] px-4 py-2 h-fit 
-            cursor-pointer transition duration-300 ease-in-out hover:bg-[#0A3E69] hover:text-[#FFD9D6]"
-        >
-          Connect
-        </button>
+        <button className="action-button">Connect</button>
       </div>
     </div>
   );
