@@ -8,28 +8,44 @@ const AddonCard = ({
   description,
   tags,
   image,
-  onClick,
+  onAdd,
 }: {
   name: string;
   description: string;
   tags: string[];
   image: string;
-  onClick: () => void;
+  onAdd: () => void;
 }) => {
   return (
     <div
       className="bg-[#32212D] hover:shadow-lg hover:bg-[#452c3d]
           transform hover:scale-101 
-          transition duration-200 ease-in-out cursor-pointer"
-      onClick={onClick}
+          transition duration-200 ease-in-out"
     >
-      <Image
-        src={image}
-        alt={name}
-        className="w-full h-32 object-cover rounded"
-        width={500}
-        height={500}
-      />
+      <div className="relative">
+        {/* overlay button */}
+        <button
+          type="button"
+          className="absolute top-2 right-2 z-10 bg-white hover:bg-[#25D74F] text-white p-1 rounded border-2 border-black border-2 cursor-pointer"
+          onClick={onAdd}
+        >
+          <Image
+            src={"/icons/add.svg"}
+            alt={name}
+            className="w-full h-5 w-5 object-cover"
+            width={100}
+            height={100}
+          />
+        </button>
+        <Image
+          src={image}
+          alt={name}
+          className="w-full h-32 object-cover rounded"
+          width={500}
+          height={500}
+        />
+      </div>
+
       <div className="p-4">
         <h2 className="text-lg font-bold text-[#FFD9D6] mt-2">{name}</h2>
         <p className="text-[#957A78]">{description}</p>
@@ -72,7 +88,7 @@ const BrowseAddons = () => {
               description={addon.description}
               tags={addon.tags}
               image={addon.image}
-              onClick={() => {
+              onAdd={() => {
                 setSelectedAddon(addon);
                 setAddonStep(AddonStep.CONFIGURE);
               }}
