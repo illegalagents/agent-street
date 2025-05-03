@@ -152,18 +152,8 @@ export interface Addon {
   image: string;
 }
 
-export enum AddonStep {
-  BROWSE,
-  CONFIGURE,
-  CUSTOM,
-}
-
 interface AddonsState {
   addons: Addon[];
-  currentAddonStep: AddonStep;
-  selectedAddon: Addon | null;
-  setSelectedAddon: (addon: Addon | null) => void;
-  setAddonStep: (step: AddonStep) => void;
   addAddon: (addon: Addon) => void;
   editAddon: (id: number, updatedAddon: Partial<Addon>) => void;
   deleteAddon: (id: number) => void;
@@ -173,10 +163,6 @@ export const useAddonStore = create<AddonsState>()(
   devtools(
     (set) => ({
       addons: mockAddons,
-      currentAddonStep: AddonStep.BROWSE,
-      selectedAddon: null,
-      setSelectedAddon: (addon) => set({ selectedAddon: addon }),
-      setAddonStep: (step: AddonStep) => set({ currentAddonStep: step }),
       addAddon: (addon) =>
         set((state) => ({
           addons: [...state.addons, addon],

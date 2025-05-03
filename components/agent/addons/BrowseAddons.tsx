@@ -1,8 +1,10 @@
 "use client";
 
-import { AddonStep, useAddonStore } from "@/zustand/addons";
+import { useAddonStore } from "@/zustand/addons";
 import { Agent, useAgentStore } from "@/zustand/agents";
 import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const AddonCard = ({
   name,
@@ -109,10 +111,10 @@ const AddonCard = ({
 };
 
 const BrowseAddons = ({ agent }: { agent: Agent }) => {
-  const { addons, setAddonStep, setSelectedAddon } = useAddonStore(
-    (state) => state
-  );
+  const { addons } = useAddonStore((state) => state);
   const { editAgent } = useAgentStore((state) => state);
+
+  const router = useRouter();
 
   return (
     <div className="fade-in">
@@ -134,8 +136,7 @@ const BrowseAddons = ({ agent }: { agent: Agent }) => {
               tags={addon.tags}
               image={addon.image}
               onAdd={() => {
-                setSelectedAddon(addon);
-                setAddonStep(AddonStep.CONFIGURE);
+                router.push(`/agents/${agent.id}/addons/${addon.id}`);
                 editAgent(agent.id, {
                   addons: [...agent.addons, addon.id],
                 });
@@ -146,8 +147,7 @@ const BrowseAddons = ({ agent }: { agent: Agent }) => {
                 });
               }}
               onEdit={() => {
-                setSelectedAddon(addon);
-                setAddonStep(AddonStep.CONFIGURE);
+                router.push(`/agents/${agent.id}/addons/${addon.id}`);
               }}
               isActive={agent.addons.includes(addon.id)}
             />
@@ -156,12 +156,9 @@ const BrowseAddons = ({ agent }: { agent: Agent }) => {
       </div>
 
       <div className="flex items-center justify-center p-4 border-t-2 border-[#44222A] gap-4">
-        <button
-          className="action-button"
-          onClick={() => setAddonStep(AddonStep.CUSTOM)}
-        >
-          Add Custom Addon
-        </button>
+        <Link href={`/agents/${agent.id}/addons/custom`}>
+          <button className="action-button">Add Custom Addon</button>
+        </Link>
       </div>
     </div>
   );

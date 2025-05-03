@@ -1,7 +1,8 @@
 "use client";
 
-import { AddonStep, useAddonStore } from "@/zustand/addons";
+import { Agent } from "@/zustand/agents";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 const AddonInput = ({
@@ -59,10 +60,8 @@ const AddonEnvInput = ({ onRemove }: { onRemove?: () => void }) => {
   );
 };
 
-const AddCustomAddon = () => {
+const AddCustomAddon = ({ agent }: { agent: Agent }) => {
   const [envs, setEnvs] = useState<number[]>([1]);
-
-  const { setAddonStep } = useAddonStore((state) => state);
 
   const addEnv = () => {
     setEnvs((prev) => [...prev, prev.length ? Math.max(...prev) + 1 : 0]);
@@ -128,12 +127,10 @@ const AddCustomAddon = () => {
       </div>
 
       <div className="flex items-center justify-center p-4 border-t-2 border-[#44222A] gap-4">
-        <button
-          className="action-button"
-          onClick={() => setAddonStep(AddonStep.BROWSE)}
-        >
-          Back
-        </button>
+        <Link href={`/agents/${agent.id}/addons`}>
+          <button className="action-button">Back</button>
+        </Link>
+
         <button className="action-button">Connect</button>
       </div>
     </div>

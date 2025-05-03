@@ -6,6 +6,7 @@ import { useState } from "react";
 import AgentAddons from "./addons/AgentAddons";
 import AgentDetails from "./AgentDetails";
 import { Agent, useAgentStore } from "@/zustand/agents";
+import { usePathname } from "next/navigation";
 
 const AgentMain = ({ agents, agent }: { agents: Agent[]; agent: Agent }) => {
   return (
@@ -62,40 +63,50 @@ const AgentMain = ({ agents, agent }: { agents: Agent[]; agent: Agent }) => {
 };
 
 const sidePanelTabs = [
-  { name: "Details", icon: "/icons/agent-details.svg" },
-  { name: "Addons", icon: "/icons/agent-addons.svg" },
-  { name: "Workflows", icon: "/icons/agent-workflows.svg" },
+  { name: "Details", icon: "/icons/agent-details.svg", link: "" },
+  {
+    name: "Addons",
+    icon: "/icons/agent-addons.svg",
+    link: "/addons",
+  },
+  {
+    name: "Workflows",
+    icon: "/icons/agent-workflows.svg",
+    link: "/workflows",
+  },
 ];
 
 const AgentSidePanel = ({ agent }: { agent: Agent }) => {
   const [tab, setTab] = useState(0);
+  const pathname = usePathname();
 
   return (
     <div className="flex flex-col md:flex-row">
       {/* Tabs */}
       <div className="flex flex-row md:flex-col gap-4 mt-4 md:mt-10 w-full md:w-auto md:justify-center md:justify-start">
         {sidePanelTabs.map((tabItem, index) => (
-          <div
-            className={`bg-[#301A25] hover:bg-[#44222A] cursor-pointer h-20 w-20 ${
-              index === tab ? "bg-[#44222A]" : ""
-            }`}
-            key={index}
-            onClick={() => setTab(index)}
-          >
-            <div className="flex flex-col items-center justify-center h-full">
-              <Image
-                src={tabItem.icon}
-                alt={tabItem.name}
-                width={40}
-                height={40}
-              />
+          <Link href={`/agents/${agent.id}/${tabItem.link}`} key={index}>
+            <div
+              className={`bg-[#301A25] hover:bg-[#44222A] cursor-pointer h-20 w-20 ${
+                index === tab ? "bg-[#44222A]" : ""
+              }`}
+              onClick={() => setTab(index)}
+            >
+              <div className="flex flex-col items-center justify-center h-full">
+                <Image
+                  src={tabItem.icon}
+                  alt={tabItem.name}
+                  width={40}
+                  height={40}
+                />
+              </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
       <div className="bg-[#301A25] border-[#44222A] border-2 h-auto md:h-[calc(100vh-65px)] flex-1 md:mt-0 overflow-hidden">
-        {tab === 0 && <AgentDetails agent={agent} />}
-        {tab === 1 && <AgentAddons agent={agent} />}
+        {pathname === `/agents/${agent.id}` && <AgentDetails agent={agent} />}
+        {pathname.includes("addons") && <AgentAddons agent={agent} />}
       </div>
     </div>
   );

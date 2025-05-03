@@ -1,17 +1,22 @@
 "use client";
 
-import { AddonStep, useAddonStore } from "@/zustand/addons";
+import { useAddonStore } from "@/zustand/addons";
 import { Agent } from "@/zustand/agents";
 import Image from "next/image";
+import Link from "next/link";
 
-const ConfigureAddon = ({ agent }: { agent: Agent }) => {
-  const { setAddonStep, selectedAddon, setSelectedAddon } = useAddonStore(
-    (state) => state
-  );
+const ConfigureAddon = ({
+  agent,
+  addonId,
+}: {
+  agent: Agent;
+  addonId: number;
+}) => {
+  const { addons } = useAddonStore((state) => state);
 
-  console.log(agent);
+  const addon = addons.find((addon) => addon.id === addonId);
 
-  if (!selectedAddon) {
+  if (!addon) {
     return (
       <div className="flex items-center justify-center h-screen">
         <p className="text-[#C5ACB2] text-lg">No addon selected</p>
@@ -23,7 +28,7 @@ const ConfigureAddon = ({ agent }: { agent: Agent }) => {
     <div className="fade-in overflow-hidden">
       <div className="p-6 border-[#44222A] border-b-2">
         <h1 className="text-[#C04944] text-3xl font-bold">
-          {selectedAddon.name} Configuration
+          {addon.name} Configuration
         </h1>
         <p className="text-[#C5ACB2] text-lg mt-2">
           Addons enhance your Agent’s capabilities, allowing them to perform
@@ -41,7 +46,7 @@ const ConfigureAddon = ({ agent }: { agent: Agent }) => {
             className="w-full h-32 object-cover rounded"
           />
           <Image
-            src={selectedAddon.image}
+            src={addon.image}
             alt="Add Addon"
             width={500}
             height={500}
@@ -51,7 +56,7 @@ const ConfigureAddon = ({ agent }: { agent: Agent }) => {
 
         <div className="flex flex-col items-center justify-center p-4 mt-20 md:px-12">
           <h1 className="text-[#C04944] text-3xl font-bold mb-2">
-            Connect {selectedAddon.name}
+            Connect {addon.name}
           </h1>
           <p>
             To learn more about the Agent’s Addons and how to configure them,
@@ -60,7 +65,7 @@ const ConfigureAddon = ({ agent }: { agent: Agent }) => {
 
           <div className="mt-24 mb-8 flex gap-4 container max-w-4xl flex-col md:flex-row">
             <Image
-              src={selectedAddon.image}
+              src={addon.image}
               alt="Add Addon"
               width={500}
               height={500}
@@ -82,15 +87,10 @@ const ConfigureAddon = ({ agent }: { agent: Agent }) => {
       </div>
 
       <div className="flex items-center justify-center p-4 border-t-2 border-[#44222A] gap-4">
-        <button
-          className="action-button"
-          onClick={() => {
-            setSelectedAddon(null);
-            setAddonStep(AddonStep.BROWSE);
-          }}
-        >
-          Back
-        </button>
+        <Link href={`/agents/${agent.id}/addons`}>
+          <button className="action-button">Back</button>
+        </Link>
+
         <button className="action-button">Fast Connect</button>
         <button className="action-button">Connect Manually</button>
       </div>

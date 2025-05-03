@@ -33,6 +33,7 @@ const mockAgents = [
     notificationCount: 2,
     image: "/agents/3.png",
     actions: ["Search X for Apple.corp news...", "Bring news from followers.."],
+    addons: [1, 2],
   },
   {
     id: 4,
