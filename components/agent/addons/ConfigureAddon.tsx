@@ -4,6 +4,8 @@ import { useAddonStore } from "@/zustand/addons";
 import { Agent } from "@/zustand/agents";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import OAuthModal from "./OAuthModal";
 
 const ConfigureAddon = ({
   agent,
@@ -12,6 +14,8 @@ const ConfigureAddon = ({
   agent: Agent;
   addonId: number;
 }) => {
+  const [isOAuthModalOpen, setIsOAuthModalOpen] = useState(false);
+
   const { addons } = useAddonStore((state) => state);
 
   const addon = addons.find((addon) => addon.id === addonId);
@@ -91,9 +95,22 @@ const ConfigureAddon = ({
           <button className="action-button">Back</button>
         </Link>
 
-        <button className="action-button">Fast Connect</button>
+        <button
+          className="action-button"
+          onClick={() => setIsOAuthModalOpen(true)}
+        >
+          Fast Connect
+        </button>
         <button className="action-button">Connect Manually</button>
       </div>
+
+      <OAuthModal
+        isOpen={isOAuthModalOpen}
+        onClose={() => setIsOAuthModalOpen(false)}
+        onSignIn={() => {
+          console.log("Sign in with OAuth");
+        }}
+      />
     </div>
   );
 };
