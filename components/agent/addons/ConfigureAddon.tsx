@@ -1,7 +1,7 @@
 "use client";
 
 import { useAddonStore } from "@/zustand/addons";
-import { Agent } from "@/zustand/agents";
+import { Agent, useAgentStore } from "@/zustand/agents";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -15,8 +15,12 @@ const ConfigureAddon = ({
   addonId: number;
 }) => {
   const [isOAuthModalOpen, setIsOAuthModalOpen] = useState(false);
+  const [isConfigured, setIsConfigured] = useState(
+    agent.addons.includes(addonId)
+  );
 
   const { addons } = useAddonStore((state) => state);
+  const { editAgent } = useAgentStore((state) => state);
 
   const addon = addons.find((addon) => addon.id === addonId);
 
@@ -59,56 +63,112 @@ const ConfigureAddon = ({
         </div>
 
         <div className="flex flex-col items-center justify-center p-4 mt-20 md:px-12">
-          <h1 className="text-[#C04944] text-3xl font-bold mb-2">
-            Connect {addon.name}
-          </h1>
-          <p>
-            To learn more about the Agent’s Addons and how to configure them,
-            visit the documentation.
-          </p>
+          {isConfigured ? (
+            <div className="flex flex-col items-center">
+              <div className="mt-24 mb-8 flex gap-4 container max-w-4xl flex-col md:flex-row">
+                <Image
+                  src={addon.image}
+                  alt="Add Addon"
+                  width={500}
+                  height={500}
+                  className="w-32 h-32 object-cover rounded border-2 border-[#44222A]"
+                />
+                <div>
+                  <h1 className="text-[#C04944] text-3xl font-bold mb-2">
+                    Addon Description
+                  </h1>
+                  <p>
+                    Don`t you hate paying big monopolies ridiculous prices for a
+                    commodity service? So do we. Best battlefield options among
+                    no good ones? Maybe fire a burst in direction of an incoming
+                    drone and hope for a lucky hit?
+                  </p>
+                </div>
+              </div>
 
-          <div className="mt-24 mb-8 flex gap-4 container max-w-4xl flex-col md:flex-row">
-            <Image
-              src={addon.image}
-              alt="Add Addon"
-              width={500}
-              height={500}
-              className="w-32 h-32 object-cover rounded border-2 border-[#44222A]"
-            />
+              <div>
+                <p>Configured</p>
+              </div>
+            </div>
+          ) : (
             <div>
               <h1 className="text-[#C04944] text-3xl font-bold mb-2">
-                Addon Description
+                Connect {addon.name}
               </h1>
               <p>
-                Don`t you hate paying big monopolies ridiculous prices for a
-                commodity service? So do we. Best battlefield options among no
-                good ones? Maybe fire a burst in direction of an incoming drone
-                and hope for a lucky hit?
+                To learn more about the Agent’s Addons and how to configure
+                them, visit the documentation.
               </p>
+
+              <div className="mt-24 mb-8 flex gap-4 container max-w-4xl flex-col md:flex-row">
+                <Image
+                  src={addon.image}
+                  alt="Add Addon"
+                  width={500}
+                  height={500}
+                  className="w-32 h-32 object-cover rounded border-2 border-[#44222A]"
+                />
+                <div>
+                  <h1 className="text-[#C04944] text-3xl font-bold mb-2">
+                    Addon Description
+                  </h1>
+                  <p>
+                    Don`t you hate paying big monopolies ridiculous prices for a
+                    commodity service? So do we. Best battlefield options among
+                    no good ones? Maybe fire a burst in direction of an incoming
+                    drone and hope for a lucky hit?
+                  </p>
+                </div>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
 
       <div className="flex items-center justify-center p-4 border-t-2 border-[#44222A] gap-4">
-        <Link href={`/agents/${agent.id}/addons`}>
-          <button className="action-button">Back</button>
-        </Link>
+        {isConfigured ? (
+          <>
+            <Link href={`/agents/${agent.id}/addons`}>
+              <button className="action-button">Back</button>
+            </Link>
 
-        <button
-          className="action-button"
-          onClick={() => setIsOAuthModalOpen(true)}
-        >
-          Fast Connect
-        </button>
-        <button className="action-button">Connect Manually</button>
+            <button
+              className="action-button"
+              onClick={() => {
+                setIsConfigured(false);
+                editAgent(agent.id, {
+                  addons: agent.addons.filter((id) => id !== addon.id),
+                });
+              }}
+            >
+              Remove
+            </button>
+          </>
+        ) : (
+          <>
+            <Link href={`/agents/${agent.id}/addons`}>
+              <button className="action-button">Back</button>
+            </Link>
+
+            <button
+              className="action-button"
+              onClick={() => setIsOAuthModalOpen(true)}
+            >
+              Fast Connect
+            </button>
+          </>
+        )}
       </div>
 
       <OAuthModal
         isOpen={isOAuthModalOpen}
         onClose={() => setIsOAuthModalOpen(false)}
         onSignIn={() => {
-          console.log("Sign in with OAuth");
+          setIsConfigured(true);
+          setIsOAuthModalOpen(false);
+          editAgent(agent.id, {
+            addons: [...agent.addons, addon.id],
+          });
         }}
       />
     </div>

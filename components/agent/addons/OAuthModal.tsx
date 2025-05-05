@@ -7,7 +7,7 @@ const OAuthModal = ({
 }: {
   isOpen: boolean;
   onClose: () => void;
-  onSignIn: (provider: string) => void;
+  onSignIn: () => void;
 }) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
@@ -16,10 +16,18 @@ const OAuthModal = ({
           Select a Sign-In Method
         </h1>
         <div className="flex flex-col items-center mt-4 gap-4">
-          <button className="action-button w-full">Sign in with Google</button>
-          <button className="action-button w-full">Sign in with Github</button>
-          <button className="action-button w-full">Sign in with Discord</button>
-          <button className="action-button w-full">Sign in with Twitter</button>
+          <button className="action-button w-full" onClick={onSignIn}>
+            Sign in with Google
+          </button>
+          <button className="action-button w-full" onClick={onSignIn}>
+            Sign in with Github
+          </button>
+          <button className="action-button w-full" onClick={onSignIn}>
+            Sign in with Discord
+          </button>
+          <button className="action-button w-full" onClick={onSignIn}>
+            Sign in with Twitter
+          </button>
           <button className="mt-2" onClick={onClose}>
             Cancel
           </button>

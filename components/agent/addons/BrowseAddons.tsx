@@ -137,9 +137,6 @@ const BrowseAddons = ({ agent }: { agent: Agent }) => {
               image={addon.image}
               onAdd={() => {
                 router.push(`/agents/${agent.id}/addons/${addon.id}`);
-                editAgent(agent.id, {
-                  addons: [...agent.addons, addon.id],
-                });
               }}
               onRemove={() => {
                 editAgent(agent.id, {
