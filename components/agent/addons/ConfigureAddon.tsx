@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import OAuthModal from "./OAuthModal";
+import ConfiguredAddon from "./ConfiguredAddon";
 
 const ConfigureAddon = ({
   agent,
@@ -64,46 +65,7 @@ const ConfigureAddon = ({
 
         <div className="flex flex-col items-center justify-center p-4 mt-20 md:px-12">
           {isConfigured ? (
-            <div className="flex flex-col items-center gap-4">
-              <div className="mt-24 mb-8 flex gap-4 container max-w-4xl flex-col md:flex-row">
-                <Image
-                  src={addon.image}
-                  alt="Add Addon"
-                  width={500}
-                  height={500}
-                  className="w-32 h-32 object-cover rounded border-2 border-[#44222A]"
-                />
-                <div>
-                  <h1 className="text-[#C04944] text-3xl font-bold mb-2">
-                    Addon Description
-                  </h1>
-                  <p>
-                    Don`t you hate paying big monopolies ridiculous prices for a
-                    commodity service? So do we. Best battlefield options among
-                    no good ones? Maybe fire a burst in direction of an incoming
-                    drone and hope for a lucky hit?
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex gap-6 mb-8 container max-w-4xl flex-col md:flex-row">
-                <div className="flex items-center border-2 border-[#44222A] h-25 w-25 justify-center">
-                  <Image
-                    src="/icons/profile.svg"
-                    alt="profile"
-                    width={60}
-                    height={60}
-                  />
-                </div>
-                <div>
-                  <h1 className="text-[#C04944]">Connected Account Details</h1>
-                  <p className="text-[#45E6FF] underline">
-                    longusername@gmail.com
-                  </p>
-                </div>
-                <button className="action-button">Sign Out</button>
-              </div>
-            </div>
+            <ConfiguredAddon addon={addon} />
           ) : (
             <div>
               <h1 className="text-[#C04944] text-3xl font-bold mb-2">
