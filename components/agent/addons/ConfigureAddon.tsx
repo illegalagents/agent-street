@@ -64,7 +64,7 @@ const ConfigureAddon = ({
 
         <div className="flex flex-col items-center justify-center p-4 mt-20 md:px-12">
           {isConfigured ? (
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center gap-4">
               <div className="mt-24 mb-8 flex gap-4 container max-w-4xl flex-col md:flex-row">
                 <Image
                   src={addon.image}
@@ -86,8 +86,22 @@ const ConfigureAddon = ({
                 </div>
               </div>
 
-              <div>
-                <p>Configured</p>
+              <div className="flex gap-6 mb-8 container max-w-4xl flex-col md:flex-row">
+                <div className="flex items-center border-2 border-[#44222A] h-25 w-25 justify-center">
+                  <Image
+                    src="/icons/profile.svg"
+                    alt="profile"
+                    width={60}
+                    height={60}
+                  />
+                </div>
+                <div>
+                  <h1 className="text-[#C04944]">Connected Account Details</h1>
+                  <p className="text-[#45E6FF] underline">
+                    longusername@gmail.com
+                  </p>
+                </div>
+                <button className="action-button">Sign Out</button>
               </div>
             </div>
           ) : (
